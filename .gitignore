@@ -1,0 +1,6 @@
+build/
+bin/
+compile_flags.txt
+imgui.ini
+vc140.idb
+vc140.pdb
