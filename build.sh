@@ -15,7 +15,7 @@ for flag in $COMMON_FLAGS $SDL_FLAGS $IMGUI_FLAGS; do
   echo "$flag" >> ./compile_flags.txt
 done
 
-files=$(find ./src -name *.cpp -type f);
+files=$(find ./src -name "*.cpp" -type f);
 
 for f in $files; do
   file_name=$(basename $f)
@@ -37,6 +37,6 @@ for f in $imgui_files; do
   g++ $IMGUI_FLAGS $SDL_FLAGS $COMMON_FLAGS -c $f -o $object_path
 done
 
-object_files=$(find ./build -name *.o -not -name "*_test.o")
+object_files=$(find ./build -name "*.o" -not -name "*_test.o")
 mkdir -p bin
 g++ $COMMON_FLAGS $IMGUI_FLAGS $SDL_FLAGS $object_files $SDL_LIBS -o bin/arena_instrumentation
