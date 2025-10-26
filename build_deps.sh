@@ -1,6 +1,9 @@
 # Building imgui dependency
 mkdir -p build/imgui
 
+# Set PKG_CONFIG_PATH to include /usr/local/lib/pkgconfig for SDL3
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+
 SDL_FLAGS="$(pkg-config sdl3 --cflags)"
 
 COMMON_FLAGS="-g -O3";
@@ -17,7 +20,7 @@ for f in ${imgui_files[@]}; do
 
   imgui_build_files+=($object_path)
 
-  g++ $SDL_FLAGS $IMGUI_FLAGS $COMONG_FLAGS -c $f -o $object_path
+  g++ $SDL_FLAGS $IMGUI_FLAGS $COMMON_FLAGS -c $f -o $object_path
 done
 
 mkdir -p build/implot
@@ -31,6 +34,6 @@ for f in ${implot_files[@]}; do
 
   imgui_build_files+=($object_path)
 
-  g++ $IMPLOT_FLAGS $COMONG_FLAGS -c $f -o $object_path
+  g++ $IMPLOT_FLAGS $COMMON_FLAGS -c $f -o $object_path
 done
 
